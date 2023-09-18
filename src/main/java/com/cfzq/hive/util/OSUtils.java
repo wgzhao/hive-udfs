@@ -1,4 +1,4 @@
-package com.cfzq.hive.utils;
+package com.cfzq.hive.util;
 
 /**
  * Created by wanghui15462 on 2017/12/1.

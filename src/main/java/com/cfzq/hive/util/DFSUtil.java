@@ -1,4 +1,4 @@
-package com.cfzq.hive.utils;
+package com.cfzq.hive.util;
 
 import java.io.IOException;
 import java.io.InputStream;

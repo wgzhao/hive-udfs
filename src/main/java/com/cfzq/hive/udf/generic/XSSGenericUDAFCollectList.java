@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.hadoop.hive.ql.udf;
+package com.cfzq.hive.udf.generic;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,4 +1,4 @@
-package com.cfzq.hive.utils;
+package com.cfzq.hive.util;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -58,7 +58,7 @@ public class CloseDateUtil {
 
     public static void getCloseDate(){
         try {
-            HdfsFileUtil hf = new HdfsFileUtil();
+            DFSUtil hf = new DFSUtil();
             java.util.Properties properties = System.getProperties();
             properties.setProperty("HADOOP_USER_NAME","hdfs");
             System.setProperties(properties);

@@ -15,17 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.hadoop.hive.ql.udf;
+package com.cfzq.hive.udf;
 
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.hive.ql.exec.vector.VectorizedExpressions;
 import org.apache.hadoop.hive.ql.exec.vector.expressions.StringLength;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
-import org.apache.hadoop.hive.ql.udf.generic.GenericUDFUtils;
 import org.apache.hadoop.hive.serde2.io.DoubleWritable;
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 
 /**
@@ -40,34 +37,35 @@ import org.apache.hadoop.io.Text;
 public class XSSUDFMaxSplitStr extends UDF {
 	private final DoubleWritable result = new DoubleWritable();
 
-  public DoubleWritable evaluate(Text s) throws HiveException {
-	if (s == null || s.toString().trim().isEmpty()) return null;
-	String[] arry = s.toString().split(",");
-	if (arry == null || arry.length == 0) {
-		result.set(0);
+  public DoubleWritable evaluate(final Text s) throws HiveException {
+		if (s == null || s.toString().trim().isEmpty())
+			return null;
+		final String[] arry = s.toString().split(",");
+		if (arry == null || arry.length == 0) {
+			result.set(0);
+			return result;
+		}
+		Double max = -Double.MAX_VALUE;
+		Double t = null;
+		try {
+			for (int i = 0; i < arry.length; i++) {
+				if (arry[i] == null || arry[i].trim().isEmpty()) {
+					continue;
+				}
+				t = Double.parseDouble(arry[i]);
+				if (t > max) {
+					max = t;
+				}
+			}
+		} catch (final Exception e) {
+			throw new HiveException("参数中包含非数字", e);
+		}
+		result.set(max);
 		return result;
 	}
-	Double max = -Double.MAX_VALUE;
-	Double t = null;
-	try {
-		for (int i=0; i<arry.length; i++) {
-			if (arry[i] == null || arry[i].trim().isEmpty()) {
-				continue;
-			}
-			t = Double.parseDouble(arry[i]);
-			if (t > max) {
-				max = t;
-			}
-		}
-	} catch (Exception e) {
-		throw new HiveException("参数中包含非数字", e);
-	}
-	result.set(max);
-	return result;
-  }
-  
-  public static void main(String[] args) throws HiveException {
-	  XSSUDFMaxSplitStr dd = new XSSUDFMaxSplitStr();
+
+	public static void main(final String[] args) throws HiveException {
+		final XSSUDFMaxSplitStr dd = new XSSUDFMaxSplitStr();
 	  
 	  System.out.println(dd.evaluate(new Text("-1,-3,-1,-5,-2")));
 	  System.out.println(dd.evaluate(new Text("1,3,1,5,1")));

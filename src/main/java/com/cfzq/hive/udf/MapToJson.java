@@ -1,4 +1,4 @@
-package com.account.analyzer.hadoop.udf.function;
+package com.cfzq.hive.udf;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.hadoop.hive.ql.exec.UDF;

@@ -1,6 +1,4 @@
-package com.cfzq.hive.utils;
-
-import com.cfzq.hive.utils.OSUtils;
+package com.cfzq.hive.util;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -9,6 +7,8 @@ import org.apache.hadoop.fs.Path;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+
+import com.cfzq.hive.util.OSUtils;
 
 /**
  * Created by tianrui on 17/5/3.
@@ -29,7 +29,7 @@ public class HadoopConf {
             if(StringUtils.isBlank(hadoop_home)){
                 hadoop_home = "/etc/hadoop/conf/core-site.xml";
             }
-            Configuration hadoopConfig = new Configuration();
+            hadoopConfig = new Configuration();
             hadoopConfig.set("hadoop.core.site.path", hadoop_home);
             Path hadoopCoreSitePath = new Path(hadoopConfig.get("hadoop.core.site.path", hadoop_home));
             if (OSUtils.osType == OSUtils.OSType.OS_TYPE_WIN
