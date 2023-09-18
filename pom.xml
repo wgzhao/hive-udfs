@@ -7,8 +7,6 @@
   <version>0.01-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -34,6 +32,11 @@
       <artifactId>hadoop-common</artifactId>
       <version>${hadoop.version}</version>
       <scope>provided</scope>
+   </dependency>
+   <dependency>
+     <groupId>com.alibaba</groupId>
+     <artifactId>fastjson</artifactId>
+     <version>1.2.71</version>
    </dependency>
   </dependencies>
   
