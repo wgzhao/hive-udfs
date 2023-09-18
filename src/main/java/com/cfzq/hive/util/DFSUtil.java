@@ -13,8 +13,8 @@ public class DFSUtil {
  
     private org.apache.hadoop.conf.Configuration hadoopConf = null;
     private Boolean haveKerberos = true;
-    private String kerberosKeytabFilePath = "/etc/security/keytabs/hive.headless.keytab";
-    private String kerberosPrincipal = "hive@CFZQ.COM";
+    private String kerberosKeytabFilePath = "/etc/security/keytabs/hive.service.keytab";
+    private String kerberosPrincipal = "hive/_HOST@CFZQ.COM";
 
 
     public static final String HDFS_DEFAULTFS_KEY = "fs.defaultFS";

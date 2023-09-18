@@ -1,7 +1,7 @@
 package com.cfzq.hive.util;
 
 import java.io.InputStream;
-import java.net.URI;
+import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,41 +13,44 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
+
 import org.apache.hadoop.hive.ql.metadata.HiveException;
+
+import com.cfzq.hive.util.Configure;
 
 public class CloseDateUtil {
 	static final Log LOG = LogFactory.getLog(CloseDateUtil.class.getName());
 	
 	public static List<String> closeDateList = new ArrayList<String>();
 	
-	//public static final String PATH="input/tables/closedate";
+	// public static final String PATH="input/tables/closedate";
 	
     static {
     		InputStream in = null;
     		try {
-		    	FileSystem fs = FileSystem.get(URI.create(Configure.CLOSE_PATH), new Configuration());
+		    	// FileSystem fs = FileSystem.get(URI.create(Configure.CLOSE_PATH), new Configuration());
 		        
-		        Path paths = new Path(Configure.CLOSE_PATH);
-		        if (!fs.exists(paths)) {
-		        		throw new Exception(paths + " not exists!");
-		        }
-		        if (fs.isDirectory(paths)) {
-		            FileStatus[] status = fs.listStatus(paths);
-		            for (FileStatus file : status) {
-		                if (file.getPath().getName().endsWith(".crc")) {
-		                    continue;
-		                }
-		                in = fs.open(new Path(file.getPath().toString()));
-		                closeDateList.addAll(IOUtils.readLines(in));
-		            }
-		        } else {
-		            in = fs.open(new Path(Configure.CLOSE_PATH));
-		            closeDateList.addAll(IOUtils.readLines(in));
-		        }
+		        // Path paths = new Path(Configure.CLOSE_PATH);
+		        // if (!fs.exists(paths)) {
+		        // 		throw new Exception(paths + " not exists!");
+		        // }
+		        // if (fs.isDirectory(paths)) {
+		        //     FileStatus[] status = fs.listStatus(paths);
+		        //     for (FileStatus file : status) {
+		        //         if (file.getPath().getName().endsWith(".crc")) {
+		        //             continue;
+		        //         }
+		        //         in = fs.open(new Path(file.getPath().toString()));
+		        //         closeDateList.addAll(IOUtils.readLines(in));
+		        //     }
+		        // } else {
+		        //     in = fs.open(new Path(Configure.CLOSE_PATH));
+		        //     closeDateList.addAll(IOUtils.readLines(in));
+				// }
+				DFSUtil dfs = new DFSUtil();
+				in =  dfs.getInputStream(Configure.CLOSE_PATH);
+				Charset charset = Charset.forName("utf8");
+				closeDateList.addAll(IOUtils.readLines(in, charset));
 		    } catch (Exception e) {
 		    		LOG.error("CloseDateUtil init failed", e);
 		    } finally {

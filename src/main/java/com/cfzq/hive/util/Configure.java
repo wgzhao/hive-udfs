@@ -8,7 +8,7 @@ public class Configure {
     public static final String FILE_PATH = "/usr/local/sqoop_data_all/hadoop/rule.json";
     public static final String HDFS_FILE_PATH = "/user/hadoop/hiveUDF/rule.json";
     public static final String LOCAL_TEST_PATH = "file:///D:/rule.json";
-    public static final String CLOSE_PATH = "input/tables/closedate";
+    public static final String CLOSE_PATH = "/user/hive/input/tables/closedate";
     public static final String AGE = "age";
     public static final String WIN_RATE = "win_rate";
     public static final String OPEN_DATE = "open_date";		//开户时间
@@ -25,6 +25,4 @@ public class Configure {
     public static final String FUND_PREFERENCE = "fund_preference";	//产品偏好
     public static final String BRANCH_NAME = "branch_name";	//营业部
     public static final String INDUSTRY_NAME = "industry_name";	//行业名
-    
-
 }
