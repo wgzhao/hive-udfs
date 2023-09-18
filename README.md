@@ -86,4 +86,5 @@ create function udf_prev_year_close_day as 'com.cfzq.hive.udf.XSSUDFPrevYearClos
 create function udf_to_hs_date as 'com.cfzq.hive.udf.XSSUDFToHsDate' using jar 'hdfs:///udf/cfzq-hiveudfs.jar';
 create function udf_week_first_close_day as 'com.cfzq.hive.udf.XSSUDFAddHsDate' using jar 'hdfs:///udf/cfzq-hiveudfs.jar';
 create function udf_year_first_close_day as 'com.cfzq.hive.udf.XSSUDFYearFirstCloseDay' using jar 'hdfs:///udf/cfzq-hiveudfs.jar';
+create function udf_cumulative_yield as 'com.cfzq.hive.udf.XSSUDFCumulativYield' using jar 'hdfs:///udf/cfzq-hiveudfs.jar';
 ```
