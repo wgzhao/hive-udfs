@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class TestUDFIP2Region {
 
-  UDFIP2Region udf = new UDFIP2Region("http://localhost:8000/v1/ipsearch/");
+  UDFIP2Region udf = new UDFIP2Region();
 
   @Test
   public void TestUDFIP2RegionDomestic() throws IOException {
