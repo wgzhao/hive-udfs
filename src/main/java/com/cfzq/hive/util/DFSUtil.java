@@ -71,6 +71,9 @@ public class DFSUtil {
         List<String> lines = new ArrayList<String>();
         try {
             String line;
+            if (! fs.exists(pt)) {
+                return new ArrayList<String>();
+            }
             line=br.readLine();
             while (line != null){
               lines.add(line);

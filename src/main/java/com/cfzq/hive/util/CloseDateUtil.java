@@ -231,7 +231,7 @@ public class CloseDateUtil {
 	}
     
     public static String toHsDate(String date) {
-    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 		try {
 			return sdf2.format(sdf.parse(date));
